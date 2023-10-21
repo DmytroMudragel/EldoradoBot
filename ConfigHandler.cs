@@ -35,6 +35,8 @@ namespace EldoradoBot
         [JsonInclude]
         public string? EldoradoRefreshToken { get; set; }
         [JsonInclude]
+        public string? Cookie { get; set; }
+        [JsonInclude]
         public string? ChatLink { get; set; }
         [JsonInclude]
         public string? TelegramBotToken { get; set; }

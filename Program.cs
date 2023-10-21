@@ -5,7 +5,16 @@ Console.Title = "Eldorado Shop Bot";
 try
 {
     bool refreshTokenIsGood = true;
+
+    ///////////////
+    ///
     ConfigHandler? configInfo = new ConfigHandler()?.Read();
+    //Eldorado eldorado1 = new Eldorado();
+    //eldorado1.Init(configInfo);
+    //var res = eldorado1.CreateNewOfferFromFile();
+
+
+    ////////////
     if (configInfo?.OffersInfo?.OffersNames is not null && configInfo?.TelegramBotToken is not null && configInfo?.UsedId is not null)
     {
         //Starting telegram bot
@@ -34,7 +43,7 @@ try
 
 
             List<Eldorado.AccOnEldorado> refreshedAccs = new List<Eldorado.AccOnEldorado>();
-            while (refreshTokenIsGood)
+            while (refreshTokenIsGood && eldorado.Init(configInfo))
             {
                 try
                 {
