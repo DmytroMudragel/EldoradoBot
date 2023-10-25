@@ -38,6 +38,11 @@ namespace EldoradoBot
             AddLogRecord(text, status,null, telegram, disableNotification);
         }
 
+        public static string ReadFromConsole()
+        {
+            return Console.ReadLine();
+        }
+
         public static void AddLogRecord(string text, Status status, Exception? exception, bool telegram = false, bool disableNotification = true)
         {
             string currentTimeString = $"[{DateTime.Now:HH:mm:ss}]";

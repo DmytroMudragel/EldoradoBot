@@ -21,7 +21,7 @@ try
         ITelegramBot telegramBot = new JustNotifyTelegramBot();
         if (telegramBot.Init(configInfo.TelegramBotToken, configInfo.UsedId))
         {
-            Logger.Init(telegramBot);
+            //Logger.Init(telegramBot);
         }
 
         //Setting accounts preferenses from config

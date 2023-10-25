@@ -79,8 +79,23 @@ namespace EldoradoBot
                     HttpResponseMessage? httpResponseMessage = _client.GetAsync(allOffersInfoRequest._Url).Result;
                     if (httpResponseMessage.StatusCode != HttpStatusCode.OK)
                     {
-                        Logger.AddLogRecord("Request Error, check for the new Cookie", Logger.Status.BAD,true,false);
-                        return false;
+                        Logger.AddLogRecord("Request Error, pls enter new cookie:", Logger.Status.WARN,true,false);
+                        string newCookie = Logger.ReadFromConsole();
+                        if (newCookie != null)
+                        {
+                            _client.DefaultRequestHeaders.Add("Cookie", newCookie);
+                            AllOffersInfoRequest allOffersInfoRequestSecondTry = new AllOffersInfoRequest(1, 40, "Account");
+                            HttpResponseMessage? httpResponseMessageSecondTry = _client.GetAsync(allOffersInfoRequestSecondTry._Url).Result;
+                            if (httpResponseMessage.StatusCode != HttpStatusCode.OK)
+                            {
+                                Logger.AddLogRecord("Init ready", Logger.Status.OK);
+                                return true;
+                            }
+                        else
+                        {
+                            Logger.AddLogRecord("Request Error, need help.", Logger.Status.BAD, true, false);
+                            return false;
+                        }
                         //if (!RefreshSession())
                         //{
                         //    return false;
